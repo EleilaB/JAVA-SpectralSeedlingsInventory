@@ -43,13 +43,13 @@ public class ProductController {
         return ResponseEntity.status(HttpStatus.CREATED).body(savedProduct);
     }
 
-//    @GetMapping("/users")
-//    public ModelAndView getUsers() {
-//        List<Users> users = userRepository.findAll();
-//        ModelAndView modelAndView = new ModelAndView("users");
-//        modelAndView.addObject("users", users);
-//        return modelAndView;
-//    }
+    @GetMapping("/users")
+    public ModelAndView getUsers() {
+        List<Users> users = userRepository.findAll();
+        ModelAndView modelAndView = new ModelAndView("users");
+        modelAndView.addObject("users", users);
+        return modelAndView;
+    }
 
 
 
