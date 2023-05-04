@@ -8,13 +8,33 @@
 <main id="products-and-categories-container">
     <section id="product-box">
         <ul id="product-list">
+            <li name="product" th:each="product : ${products}">
+                <form name="delete-product" th:action="@{/views/delete-product}" method="post">
+                    <input th:value="${product.getProduct_id()}" th:name="product_id" hidden>
+                    <label th:text="${product.getLabel()}"></label>
+                    <button type="submit">Delete</button>
+                </form>
+            </li>
         </ul>
     </section>
     <section id="category-box">
-        <div id="delete-category-container">
-            <button id="delete-category">X</button>
-            <label for="delete-category">Remove Category</label>
-        </div>
+        <ul id="category-list">
+            <li name="category" th:each="category : ${categories}">
+                <form name="select-category" th:action="@{/views/products}">
+                    <input th:value="${category.getCategory_id()}" th:name="categoryId" hidden>
+                    <label th:text="${category.getName()}"></label>
+                    <button type="submit">Show Products</button>
+                </form>
+                <form name="delete-category" th:action="@{/views/delete-category}" method="post">
+                    <input th:value="${category.getCategory_id()}" th:name="category_id" hidden>
+                    <button type="submit">Delete</button>
+                </form>
+            </li>
+        </ul>
+    </section>
+    <section id="create-new">
+        <a id="create-product" href="/views/create-product">New Product</a>
+        <a id="create-category" href="/views/create-category">New Category</a>
     </section>
 </main>
 </body>

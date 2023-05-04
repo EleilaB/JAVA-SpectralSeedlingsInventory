@@ -9,19 +9,25 @@ public class Product {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    int product_id;
+    Long product_id;
     String name;
     Double price;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "category_id")
     @JsonProperty
     Category category;
 
     Product(){}
 
-    public int getProduct_id() {
+    public String getLabel(){return name + " - $" + price;}
+
+    public Long getProduct_id() {
         return product_id;
+    }
+
+    public void setProduct_id(Long product_id) {
+        this.product_id = product_id;
     }
 
     public String getName() {
